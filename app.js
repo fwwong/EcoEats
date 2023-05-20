@@ -21,7 +21,7 @@ app.use("/", authRoutes);
 database.connect();
 
 app.listen(process.env.PORT || 4000, () => {
-    console.log('Server is running on port 3000');
+    console.log('Server is running on port 4000');
 });
 
 // Serve CSS files from the "public/css" directory

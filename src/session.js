@@ -8,7 +8,7 @@ const mongodb_password = process.env.MONGODB_PASSWORD;
 const mongodb_session_secret = process.env.MONGODB_SESSION_SECRET;
 
 const mongoStore = new MongoDBStore({
-    uri: `mongodb+srv://${mongodb_user}:${mongodb_password}@cluster0.jzcviee.mongodb.net/?retryWrites=true&w=majority`,
+    uri: `mongodb+srv://${mongodb_user}:${mongodb_password}@${process.env.MONGODB_HOST}/?retryWrites=true&w=majority`,
     collection: 'sessions',
     crypto: {
         secret: mongodb_session_secret
