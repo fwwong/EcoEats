@@ -9,13 +9,13 @@ const expireTime = 1000 * 60 * 60 * 24 * 7; // 1 week
 
 // Index page
 router.get("/", (req, res) => {
-    res.render("index");
+    res.render("./authorization/login");
     ``
 });
 
 // Signup page
 router.get("/signup", (req, res) => {
-    res.render("../views/authorization/signup");
+    res.render("/authorization/signup");
 });
 
 // Signup route
@@ -25,8 +25,6 @@ router.post("/signup", async (req, res) => {
         username,
         email,
         password,
-        securityQuestion,
-        securityAnswer,
     } = req.body;
 
     const hashedPassword = await bcrypt.hashSync(password, saltRounds);
@@ -38,8 +36,6 @@ router.post("/signup", async (req, res) => {
             username: username,
             email: email,
             password: hashedPassword,
-            securityQuestion: securityQuestion,
-            securityAnswer: hashedSecurityAnswer,
         });
         console.log("User created");
         res.redirect("/");
@@ -88,12 +84,6 @@ router.post("/loginUser", async (req, res) => {
             username: user.username,
             email: user.email,
             password: user.password,
-            securityQuestion: user.securityQuestion,
-            securityAnswer: user.securityAnswer,
-            personaHistory: user.personaHistory,
-            innerDialogueHistory: user.innerDialogueHistory,
-            personaDialogueHistory: user.personaDialogueHistory,
-            userPersonaChatHistory: user.userPersonaChatHistory,
         };
         const currentSessionId = req.session.id; // Retrieve the current session ID from req.session.id
         user.currentSessionId = currentSessionId;
@@ -119,23 +109,6 @@ router.post("/400", (req, res) => {
 
 router.get('/logout', async (req, res) => {
     // Retrieve the current username from the session
-    const currentUsername = req.session.user.username;
-
-    try {
-        // Find the user based on the username
-        const currentUser = await User.findOne({
-            username: currentUsername
-        });
-
-        // Update the dialogueHistory field to an empty array
-        currentUser.dialogueHistory = [];
-        currentUser.innerDialogueHistory = [];
-        currentUser.personaDialogueHistory = [];
-
-        // Save the updated user
-        await currentUser.save();
-
-        // Clear the session and redirect to the login page
         req.session.destroy((err) => {
             if (err) {
                 console.error(err);
@@ -144,16 +117,7 @@ router.get('/logout', async (req, res) => {
                 res.render("../views/authorization/logout");
             }
         });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("An error occurred during logout");
-    }
-});
-
-
-router.post("/exit", (req, res) => {
-    res.redirect("/");
-});
+    });
 
 // Reset password page
 router.get("/resetPassword", (req, res) => {
