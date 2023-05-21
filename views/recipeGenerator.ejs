@@ -51,30 +51,42 @@
 </div>
 <!-- Generate recipe -->
 <form action="/recipe-generator" method="post" class="text-center input-container">
-  <button class="btn btn-primary" type="submit">Generate recipes</button>
+  <button class="btn btn-primary my-3" type="submit">Generate a recipe</button>
 </form>
 
-<form action="/recipe-generator/save-recipe" method="post">
-  <div class="row px-3">
-    <% for (var i=0; i<recipes.length; i++) { %>
+<% if (recipes != "") { %>
+<div class="row px-3">
+  <!-- <d% for (var i=0; i<recipes.length; i++) { %> -->
+  <form action="/recipe-generator/save-recipe" method="post">
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <label class="card-title"><%- recipes[i] %></label><br>
-          <button class="material-icons position-absolute top-0 end-0 m-3 clickable save-icon" type="submit" name="save" value="<%- i %>">
+          <label class="card-text"><%- recipes %></label><br>
+          <div class="text-center">
+            <button class="btn btn-primary my-3" type="submit">
+              Save this recipe
+            </button>
+          </div>
+          <!-- <button class="material-icons position-absolute top-0 end-0 m-3 clickable save-icon" type="submit" name="save" value="<%- i %>">
             star_border
-          </button>
+          </button> -->
         </div>
         <!-- Button trigger modal -->
         <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveParameterModal<%- i %>">
-            Show Recipe Details
-          </button> -->
+          Show Recipe Details
+        </button> -->
       </div>
+  </form>
+  <form action="/recipe-generator/generate-another" method="post">
+    <div class="text-center">
+      <button class="btn btn-secondary my-3" type="submit">
+        Generate another recipe
+      </button>
     </div>
-    <% } %>
-  </div>
-  <br>
-</form>
+  </form>
+</div>
+<br>
+<% } %>
 
 
 <!-- Modal -->

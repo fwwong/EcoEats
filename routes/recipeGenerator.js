@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const dotenv = require('dotenv');
 const User = require("../models/users");
+const SavedRecipe = require("../models/savedRecipe");
 const session = require('express-session');
 const { Configuration, OpenAIApi } = require('openai');
 const { appendFile } = require("fs");
@@ -31,7 +32,7 @@ async function callOpenAIAPi(userPrompt) {
 let categories = [];
 let diets = [];
 let ingredientList = [];
-let recipes = [];
+let recipes = "";
 let sustainability = "";
 
 router.use('/recipe-generator', async (req, res, next) => {
@@ -77,7 +78,7 @@ router.post('/recipe-generator/add-ingredients', async (req, res) => {
     });
 });
 
-router.post('/recipe-generator/delete-ingredients', (req, res) => {
+router.post('/recipe-generator/delete-ingredients', async (req, res) => {
     const { index } = req.body;
     if (index >= 0 && index < ingredientList.length) {
         ingredientList.splice(index, 1);
@@ -99,25 +100,73 @@ router.post('/recipe-generator', async (req, res) => {
     const diet = diets.join(', ') || "";
     const ingredients = ingredientList.join(', ');
 
-    const recipePrompt = `Generate top 3 ${diet} ${category} recipes that contains ${ingredients} in a general recipe format.`;
+    const recipePrompt = `Generate one ${diet} ${category} recipe that contains ${ingredients} in a readable general recipe format.`;
     console.log(recipePrompt);
 
     let responseData = await callOpenAIAPi(recipePrompt);
     responseData = responseData.replaceAll("\n", "<br>")
     console.log(responseData);
 
-    recipes = [];
+    recipes = responseData;
 
-    recipes.push(
-        responseData
-        // if successfully parsed
-        // {
-        //     recipeName: responseData,
-        //     recipeDetails: responseData
-        // }
-    );
+    // recipes.push(
+    //     responseData
+    //     // if successfully parsed
+    //     // {
+    //     //     recipeName: responseData,
+    //     //     recipeDetails: responseData
+    //     // }
+    // );
 
     console.log(recipes);
+
+    res.render("recipeGenerator", {
+        recipes: recipes,
+        ingredients: ingredientList,
+        categories: categories,
+        diets: diets,
+        sustainability: sustainability,
+    });
+});
+
+router.post('/recipe-generator/generate-another', async (req, res) => {
+    const category = categories.join(', ') || "";
+    const diet = diets.join(', ') || "";
+    const ingredients = ingredientList.join(', ');
+
+    const recipePrompt = `Generate another new ${diet} ${category} recipe that contains ${ingredients} in a readable general recipe format.`;
+    console.log(recipePrompt);
+
+    let responseData = await callOpenAIAPi(recipePrompt);
+    responseData = responseData.replaceAll("\n", "<br>")
+    console.log(responseData);
+
+    recipes = responseData;
+    console.log(recipes);
+
+    res.render("recipeGenerator", {
+        recipes: recipes,
+        ingredients: ingredientList,
+        categories: categories,
+        diets: diets,
+        sustainability: sustainability,
+    });
+});
+
+router.post('/recipe-generator/save-recipe', async (req, res) => {
+    let savedRecipes = recipes;
+    console.log(savedRecipes);
+
+    const currentUser = await User.findOne({
+        username: req.session.user.username
+    });
+    const userId = currentUser._id;
+
+    SavedRecipe.create({
+        userId: userId,
+        recipe: savedRecipes,
+        date: Date.now(),
+    });
 
     res.render("recipeGenerator", {
         recipes: recipes,
