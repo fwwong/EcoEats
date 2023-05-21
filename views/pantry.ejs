@@ -1,0 +1,46 @@
+<!-- NEW PROMPT PAGE -->
+<!-- header and back bar -->
+<%- include ("./partials/header.ejs") %>
+
+<div class="col text-center">
+  <h1>PANTRY</h1>
+</div>
+
+<form action="/pantry/add" method="post">
+  <div class="container text-center pt-5 mb-3">
+    <label class="form-label">Ingredient</label><br>
+    <input class="form-control" type="text" name="pantry" placeholder="Ingredient" /><br>
+    <label class="form-label">Quantity</label><br>
+    <input class="form-control" type="number" name="quantity" placeholder="Quantity" /><br>
+    <label class="form-label">Expiry Date</label><br>
+    <input class="form-control" type="date" name="expiry" placeholder="Expiry" />
+    <button class="btn btn-primary my-3" type="submit">Add</button>
+  </div>
+</form>
+
+<div class="container">
+  <div class="row">
+    <% for (var i=0; i<pantry.length; i++) { %>
+    <form action="/pantry/delete" method="post">
+      <div class="col-12">
+        <div class="card <% if (today > pantry[i].expiry) { %>bg-secondary text-light<% } %>">
+          <div class="card-body text-center">
+              <label class="card-title fw-bold"><%- pantry[i].pantry %></label><br>
+              <p class="card-text text-start">
+                  Quantity: <%- pantry[i].quantity %><br><br>
+                  Date Added: <%- pantry[i].date %><br><br>
+                  <% if (today > pantry[i].expiry) { %><mark>Expired.</mark><br><% } %>
+                  Expiry Date: <%- pantry[i].expiry %>
+            </p>
+            <button type="submit" class="material-icons position-absolute top-0 end-0 mt-3 clickable delete-icon" name="delete" value="<%- pantry[i]._id %>">delete_outlined</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <% } %>
+  </div>
+</div>
+
+<!-- navbar and footer -->
+<%-include ("./partials/bottom-nav.ejs")%>
+<%-include ("./partials/footer.ejs")%>
