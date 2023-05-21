@@ -1,6 +1,6 @@
-body{
-    margin: 0;
-    padding: 0;
+body {
+  margin: 0;
+  padding: 0;
 }
 
 #background {
@@ -38,21 +38,38 @@ body{
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  top:0;
+  top: 0;
   min-width: 100%;
   min-height: 100%;
 }
 
-#nav-text{
-   color: white;
+#nav-text {
+  color: white;
 }
 
-.material-icons{
-    width:60px;
-    height:30px;
-    color: white;
+.material-icons {
+  width: 60px;
+  height: 30px;
+  color: white;
 }
 
-#profile-img{
-    border-style: solid 10px black;
+.clickable {
+  cursor: pointer;
+}
+
+button.save-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+}
+
+.save-icon,
+.delete-icon {
+  color: #09524e;
+}
+
+#profile-img {
+  border-style: solid 10px black;
 }
