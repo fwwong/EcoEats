@@ -53,3 +53,6 @@ body{
     color: white;
 }
 
+#profile-img{
+    border-style: solid 10px black;
+}

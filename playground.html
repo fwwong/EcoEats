@@ -25,14 +25,51 @@
     <!-- JAVASCRIPT FILES -->
   </head>
   <body>
+    <div
+      id="carouselExampleAutoplaying"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="..." class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="..." />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- NAV BAR -->
     <div class="container-fluid text-center fixed-bottom bg-primary" id="nav">
       <div>
         <div class="row">
-          <!-- home  -->
+          <!-- map  -->
           <div class="col pt-3">
             <a href="/">
-              <span class="material-icons">home</span>
-              <p id="nav-text">home</p>
+              <span class="material-icons">map</span>
+              <p id="nav-text">Map</p>
             </a>
           </div>
 
@@ -44,18 +81,26 @@
             </a>
           </div>
 
-          <!-- saved -->
+          <!-- home -->
           <div class="col pt-3">
-            <a href="/saved">
-                <span class="material-icons">bookmark</span>
-              <p id="nav-text">Saved</p>
+            <a href="/">
+              <span class="material-icons">home</span>
+              <p id="nav-text">Home</p>
+            </a>
+          </div>
+
+          <!-- pantry-->
+          <div class="col pt-3">
+            <a href="#">
+              <span class="material-icons">kitchen</span>
+              <p id="nav-text">Pantry</p>
             </a>
           </div>
 
           <!-- profile -->
           <div class="col pt-3">
             <a href="/profile">
-                <span class="material-icons">account_circle</span>
+              <span class="material-icons">account_circle</span>
               <p id="nav-text">Profile</p>
             </a>
           </div>
