@@ -9,13 +9,12 @@ const expireTime = 1000 * 60 * 60 * 24 * 7; // 1 week
 
 // Index page
 router.get("/", (req, res) => {
-    res.render("./authorization/login");
-    ``
+    res.render("index");
 });
 
 // Signup page
 router.get("/signup", (req, res) => {
-    res.render("/authorization/signup");
+    res.render("./authorization/signup");
 });
 
 // Signup route
@@ -121,7 +120,7 @@ router.get('/logout', async (req, res) => {
 
 // Reset password page
 router.get("/resetPassword", (req, res) => {
-    res.render("../views/authorization/resetPassword", {
+    res.render("./authorization/resetPassword", {
         email: "",
         securityQuestion: "",
         securityAnswer: "",
