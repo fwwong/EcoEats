@@ -15,15 +15,70 @@
     <!-- JQUERY -->
     <script src="https://bootswatch.com/_vendor/jquery/dist/jquery.min.js"></script>
     <!-- CSS FILES -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../style.css" />
     <!-- JAVASCRIPT FILES -->
-    <script src="js/script.js"></script>
   </head>
   <body>
-    
+    <!-- video background -->
+    <video autoplay muted loop id="background">
+      <source src="./assets/ecoeats.mp4" type="video/mp4" />
+    </video>
 
+    <div class="container-fluid" id="login">
+        <div id="box">
+        <img
+          id="logo"
+          src="../assets/logo.png"
+          width="300px"
+          height="300px"
+          alt="logo"
+        /> 
 
+        <div class="container text-start py-5">
+          <form action="/loginUser" method="post">
+            <div class="mb-3">
+              <label for="loginName" class="form-label">Username / Email</label>
+              <input
+                type="loginName"
+                class="form-control"
+                id="loginName"
+                name="loginName"
+                aria-describedby="emailHelp"
+              />
 
+              <div id="emailHelp" class="form-text">
+                We'll never share your email with anyone else.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+              />
+            </div>
+
+            <!-- FORGET PASSWORD -->
+            <div id="resetPassword" class="form-text">
+              <a href="/resetPassword">Forgot password</a>
+            </div>
+
+            <div class="p-4 text-center">
+              <button type="submit" class="btn btn-primary">LOGIN</button>
+            </div>
+
+            <!-- SIGN UP -->
+            <div>
+              <p class="text-center">
+                Don't have an account? <a href="/signup">SIGN UP</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
-
