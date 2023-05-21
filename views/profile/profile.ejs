@@ -2,7 +2,7 @@
 <!-- header -->
 <%-include ('../partials/header')%>
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="container text-center align-item-center pt-5" id="decor_user">
     <div class="pb-4 pt-5">
       <form action="upload.png" method="post" enctype="multipart/form-data">
@@ -18,59 +18,58 @@
         <input type="File" name="fileToUpload" id="fileToUpload">
       </form>
     </div>
+  </div> -->
+
+
+<!-- Menu -->
+<div class="container px-3">
+
+  <!-- Account Settings -->
+  <div class="card p-3 bg-secondary btn text-light">
+    <a href="/profile/account-settings">
+      <div class="row">
+        <div class="col-2">
+          <span class="material-icons">manage_accounts</span>
+        </div>
+        <div class="col-10" id="menubtn">Account Settings</div>
+      </div>
+    </a>
   </div>
+  <br />
 
-
-  <!-- Menu -->
-  <div class="container px-3">
-
-    <!-- Account Settings -->
-    <div class="card p-3 bg-secondary btn">
-      <a href="/profile/account-settings">
-        <div class="row ">
-          <div class="col-2">
-            <img src="../images/icons/Setting.png" width="20px" height="20px" alt="" />
-          </div>
-          <div class="col" id="menubtn">Account Settings</div>
+  <!-- Saved Recipes -->
+  <div class="card p-3 bg-secondary btn">
+    <a href="/saved-recipes">
+      <div class="row">
+        <div class="col-2">
+          <span class="material-icons">favorite</span>
         </div>
-      </a>
-    </div>
-    <br />
-
-    <!-- Saved Recipes -->
-    <div class="card p-3 bg-secondary btn">
-      <a href="/saved-recipes">
-        <div class="row">
-          <div class="col-2">
-            <img src="" width="20px" height="20px" alt="" />
-          </div>
-          <div class="col" id="menubtn">Saved Recipes</div>
-        </div>
-      </a>
-    </div>
-    <br />
-
-    <!-- About Us -->
-    <div class="card p-3 bg-secondary btn">
-      <a href="/about-us">
-        <div class="row">
-          <div class="col-2">
-            <img src="../images/icons/AboutUs.png" width="20px" height="20px" alt="" />
-          </div>
-          <div class="col" id="menubtn">About Us</div>
-        </div>
-      </a>
-    </div>
-    <br />
-
-    <!-- Logout -->
-    <div class="text-center ">
-      <button type="button" class="btn" onclick="window.location.href='/logout'">
-        LOGOUT
-      </button>
-    </div>
-    <br />
+        <div class="col-10" id="menubtn">Saved Recipes</div>
+      </div>
+    </a>
   </div>
+  <br />
+
+  <!-- About Us -->
+  <div class="card p-3 bg-secondary btn">
+    <a href="/about-us">
+      <div class="row">
+        <div class="col-2">
+          <span class="material-icons">information</span>
+        </div>
+        <div class="col-10" id="menubtn">About Us</div>
+      </div>
+    </a>
+  </div>
+  <br />
+
+  <!-- Logout -->
+  <div class="text-center ">
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/logout'">
+      LOGOUT
+    </button>
+  </div>
+  <br />
 </div>
 
 </div>

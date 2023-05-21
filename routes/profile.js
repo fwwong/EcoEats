@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const User = require("../models/users");
+const SavedRecipe = require("../models/savedRecipe");
 // Home page
 router.get("/home", (req, res) => {
     res.render("home", {
@@ -94,8 +95,19 @@ router.post("/profile/account-settings", async (req, res) => {
 });
 
 // saved recipes page
-router.get('/saved-recipes', (req, res) => {
-    res.render("../views/profile/savedRecipes");
+router.get('/saved-recipes', async(req, res) => {
+    const currentUser = await User.findOne({
+        username: req.session.user.username
+    });
+
+    const userId = currentUser._id;
+    const savedRecipes = await SavedRecipe.find({
+        userId: userId
+    });
+    res.render("../views/profile/savedRecipes",
+        {
+            savedRecipes: savedRecipes
+        });
 });
 
 //access to About Us page
