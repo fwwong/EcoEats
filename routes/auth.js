@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 
 // Signup page
 router.get("/signup", (req, res) => {
-    res.render("/authorization/signup");
+    res.render("./authorization/signup");
 });
 
 // Signup route
@@ -120,7 +120,7 @@ router.get('/logout', async (req, res) => {
 
 // Reset password page
 router.get("/resetPassword", (req, res) => {
-    res.render("../views/authorization/resetPassword", {
+    res.render("./authorization/resetPassword", {
         email: "",
         securityQuestion: "",
         securityAnswer: "",
