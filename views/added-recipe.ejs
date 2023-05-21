@@ -1,0 +1,43 @@
+<%-include ("./partials/header.ejs") %>
+
+
+<div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                Category
+            </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                <div class="card">
+
+                    <form id="addForm" action="/recipe/ingredients/add" method="post">
+                        <input id="addIndex" type="hidden" name="index" value="bowl" />
+                    </form>
+
+                    <image src="/assets/logos/noun-bowl-1075747.png" alt="bowl" class="add-icon" data-index="bowl" />
+                </div>
+                <div>
+                    <image src="/assets/logos/noun-coffee-4004096.png" alt="coffee" class="coffee-icon" />
+                </div>
+                <div>
+                    <image src="/assets/logos/noun-egg-1075749.png" alt="egg" class="egg-icon" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            let list = [];
+            $('.add-icon').on('click', function () {
+                var index = $(this).data('index');
+                list.push(String(index));
+                console.log(list);
+                $('#addIndex').val(list.join(','));
+                $('#addForm').submit();
+            });
+        });
+    </script>
