@@ -9,8 +9,7 @@ const expireTime = 1000 * 60 * 60 * 24 * 7; // 1 week
 
 // Index page
 router.get("/", (req, res) => {
-    res.render("./authorization/login");
-    ``
+    res.render("index");
 });
 
 // Signup page
