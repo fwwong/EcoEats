@@ -74,3 +74,45 @@ button.delete-icon {
 #profile-img {
   border-style: solid 10px black;
 }
+
+.home-hello {
+  font-size: 3rem;
+  color: #FAF9F6;
+  font-weight: 450;
+}
+
+.content-card {
+  font-size: 1.2rem;
+  padding: 1%;
+  text-align: center;
+  margin: 2%;
+  border-radius: 5px;
+  padding-top: 0;
+  padding-right: 0;
+  padding-left: 0;
+  overflow: hidden;
+  background-color: #FAF9F6;
+}
+
+.horizontal-scrollable>.row {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.horizontal-scrollable>.row>.col-xs-4 {
+  display: inline-block;
+  float: none;
+}
+
+.quote {
+  font-size: medium;
+  font-style: italic;
+}
+
+.small-break {
+  margin-top: 0.5em;
+}
+
+.recipe-title {
+  color: white;
+}

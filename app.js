@@ -5,6 +5,7 @@ const sessionConfig = require("./src/session"); // Session Configuration
 const authRoutes = require("./routes/auth"); // includes login, signup, logout, password reset, index, and home
 const recipeRoutes = require("./routes/recipeGenerator"); // includes recipe generator
 const pantryRoutes = require("./routes/pantry"); // includes pantry
+const homeRoutes = require("./routes/home"); // includes pantry
 
 
 app.set('view engine', 'ejs');
@@ -18,6 +19,7 @@ app.use(express.static('public'));
 app.use("/", authRoutes);
 app.use("/", recipeRoutes);
 app.use("/", pantryRoutes);
+app.use("/", homeRoutes);
 
 
 // Database & Port Connection
