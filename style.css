@@ -107,14 +107,20 @@ button.delete-icon {
 .quote {
   font-size: medium;
   font-style: italic;
+  color: black;
 }
 
+.big-quote {
+  font-size: 5rem;
+  font-style: medium;
+  color: black;
+}
 .small-break {
   margin-top: 0.5em;
 }
 
 .recipe-title {
-  color: white;
+  color: black;
 }
 
 .material-symbols-outlined {
@@ -126,3 +132,24 @@ button.delete-icon {
 }
 
 
+#section_maps {
+  padding: 0;
+  margin: 2vw 0;
+}
+
+.heading_maps {
+  padding-left: 20px;
+  padding-bottom: 8px;
+  margin: 0;
+  border-bottom: solid 1px #ced4da;
+}
+
+.map-image-box {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.map-img {
+  width: 100%;
+}

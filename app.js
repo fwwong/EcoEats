@@ -7,7 +7,6 @@ const recipeRoutes = require("./routes/recipeGenerator"); // includes recipe gen
 const pantryRoutes = require("./routes/pantry"); // includes pantry
 const homeRoutes = require("./routes/home"); // includes pantry
 
-
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
