@@ -25,25 +25,51 @@
     </video>
 
     <div class="container-fluid" id="login">
-        <div id="box">
-        <img id="logo" src="../assets/logo.png" width="300px" height="300px" alt="logo"/> 
+      <div id="box">
+        <img
+          id="logo"
+          src="../assets/logo.png"
+          width="300px"
+          height="300px"
+          alt="logo"
+        />
         <h2 class="pt-5 text-light">Forgot your password?</h2>
         <p class="text-light">Enter your email address below and we'll get you back on track.</p>
-
+    
         <div class="container text-start py-3">
           <form action="/loginUser" method="post">
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" name="email" />
             </div>
+        
+            <!-- ONCE EMAIL IS VERIFIED, HIDE EMAIL AND SHOW SECURITY QUESTION AND ANSWER -->
+            <div class="mb-3">
+              <label for="securityQuestion" class="form-label">Security Question</label>
+              <input class="form-control" type="text" value="SECURITY QUESTION" disabled readonly>
+            </div>
 
+            <div class="mb-3">
+                <label for="securityAnswer" class="form-label">Security Answer</label>
+                <input type="securityAnswer" class="form-control" id="securityAnswer" name="securityAnswer" />
+            </div>
+
+            <!-- ONCE SECURITY QUESTION IS VERIFIED, HIDE SECURITY QUESTION AND SHOW NEW PASSWORD -->
+            <div class="mb-3">
+              <label for="password" class="form-label">New Password</label>
+              <input type="password" class="form-control" id="password" name="password" />        
+    
+    
             <div class="mb-3 py-2 text-center">
                 <button class="btn btn-primary btn-lg" type="submit" href="#">SUBMIT</button>
               </p>
             </div>
-          </form>
+    
+        </button>
         </div>
       </div>
+
+
     </div>
   </body>
 </html>
