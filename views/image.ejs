@@ -1,0 +1,16 @@
+<form action="/recipe-img" method="post" class="text-center input-container">
+    <div class="container" id="chatContainer">
+        <!-- Existing chat messages -->
+        <div class="row">
+            <div class="col-12" id="botOutput">
+                <!-- Print out the image -->
+                <img src="<%- img %>" alt="bot image" />
+            </div>
+        </div>
+
+        <div class="row">
+            <input class="form-control col" type="text" name="prompt" placeholder="<%= placeholderText %>" />
+            <button class="btn col-3" type="submit">Send</button>
+        </div>
+    </div>
+</form>
