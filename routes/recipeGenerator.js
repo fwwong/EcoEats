@@ -32,12 +32,14 @@ let categories = [];
 let diets = [];
 let ingredientList = [];
 let recipes = [];
+let sustainability = "";
 
 router.use('/recipe-generator', async (req, res, next) => {
     req.session.recipes = recipes;
     req.session.categories = categories;
     req.session.diets = diets;
     req.session.ingredientList = ingredientList;
+    req.session.sustainability = sustainability;
     next();
 });
 
@@ -47,19 +49,31 @@ router.get('/recipe-generator', (req, res) => {
         ingredients: ingredientList,
         categories: categories,
         diets: diets,
+        sustainability: sustainability,
     });
 });
 
 router.post('/recipe-generator/add-ingredients', async (req, res) => {
     const ingredient = req.body.ingredient;
     ingredientList.push(ingredient);
-    console.log(ingredientList);
-    console.log(ingredientList.join(','));
+
+    const ingredients = ingredientList.join(', ');
+
+    const sustainablePrompt = `Are the following ingredients considered sustainable? ${ingredients}`;
+    console.log(sustainablePrompt);
+
+    let responseData = await callOpenAIAPi(sustainablePrompt);
+    responseData = responseData.replaceAll("\n", "<br>")
+    console.log(responseData);
+
+    sustainability = responseData;
+
     res.render("recipeGenerator", {
         recipes: recipes,
         ingredients: ingredientList,
         categories: categories,
         diets: diets,
+        sustainability: sustainability,
     });
 });
 
@@ -73,6 +87,7 @@ router.post('/recipe-generator/delete-ingredients', (req, res) => {
             ingredients: ingredientList,
             categories: categories,
             diets: diets,
+            sustainability: sustainability,
         })
     } else {
         res.status(400).send('Invalid index'); // Send an error response to the client
@@ -80,24 +95,18 @@ router.post('/recipe-generator/delete-ingredients', (req, res) => {
 });
 
 router.post('/recipe-generator', async (req, res) => {
-    const category = categories.join(',') || "";
-    const diet = diets.join(',') || "";
-    const ingredients = ingredientList.join(',');
-
-    console.log(ingredientList)
-    console.log(ingredients)
+    const category = categories.join(', ') || "";
+    const diet = diets.join(', ') || "";
+    const ingredients = ingredientList.join(', ');
 
     const recipePrompt = `Generate top 3 ${diet} ${category} recipes that contains ${ingredients} in a general recipe format.`;
     console.log(recipePrompt);
 
-    const sustainablePrompt = `Are the following ingredients considered sustainable? ${ingredients}`;
-    console.log(sustainablePrompt);
-
-    // const responseData = "test";
-    const responseData = await callOpenAIAPi(recipePrompt);
+    let responseData = await callOpenAIAPi(recipePrompt);
+    responseData = responseData.replaceAll("\n", "<br>")
     console.log(responseData);
 
-    recipes.empty();
+    recipes = [];
 
     recipes.push(
         responseData
@@ -115,6 +124,7 @@ router.post('/recipe-generator', async (req, res) => {
         ingredients: ingredientList,
         categories: categories,
         diets: diets,
+        sustainability: sustainability,
     });
 });
 

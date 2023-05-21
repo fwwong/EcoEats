@@ -5,8 +5,6 @@
 <div class="col text-center">
   <h1>RECIPE GENERATOR</h1>
 </div>
-</div>
-</div>
 
 <!-- populate dropdown -->
 <div class="container-fluid pt-5">
@@ -18,7 +16,7 @@
         </button>
       </h2>
       <div id="ingredientsSelect" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushIngredients">
-        <div class="container-fluid pt-3">
+        <div class="container-fluid py-3 text-center">
           <form action="/recipe-generator/add-ingredients" method="post">
             <div class="row">
               <input class="form-control col mx-3" type="text" name="ingredient" placeholder="Add an ingredient" />
@@ -31,38 +29,36 @@
             <input id="deleteIndex" type="hidden" name="index" value="" />
           </form>
 
-          <form action="/recipe-generator/sustainable" method="post" class="text-center">
-            <div class="row">
-              <% for (var i=0; i<ingredients.length; i++) { %>
-              <div class="col-12">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <label class="card-title"><%- ingredients[i] %></label><br>
-                    <i class="material-icons position-absolute top-0 end-0 m-3 delete-icon" style="cursor: pointer;" data-index="<%- i %>">delete_outlined</i>
-                  </div>
+          <div class="row">
+            <% for (var i=0; i<ingredients.length; i++) { %>
+            <div class="col-12">
+              <div class="card text-center">
+                <div class="card-body">
+                  <label class="card-title"><%- ingredients[i] %></label><br>
+                  <i class="material-icons position-absolute top-0 end-0 m-3 clickable delete-icon" data-index="<%- i %>">delete_outlined</i>
                 </div>
               </div>
-              <% } %>
             </div>
-            <br>
-            <button class="btn btn-secondary" type="submit">Are these sustainable?</button>
-          </form>
+            <% } %>
+          </div>
+          <br>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#sustainability">Are these ingredients sustainable?</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <!-- Generate recipe -->
 <form action="/recipe-generator" method="post" class="text-center input-container">
   <button class="btn btn-primary" type="submit">Generate recipes</button>
 </form>
 
-<form action="/recipe-generator/save-recipe" method="post" class="text-center">
-  <div class="row">
+<form action="/recipe-generator/save-recipe" method="post">
+  <div class="row px-3">
     <% for (var i=0; i<recipes.length; i++) { %>
     <div class="col-12">
-      <div class="card text-center">
+      <div class="card">
         <div class="card-body">
           <label class="card-title"><%- recipes[i] %></label><br>
           <button class="material-icons position-absolute top-0 end-0 m-3 clickable save-icon" type="submit" name="save" value="<%- i %>">
@@ -70,9 +66,9 @@
           </button>
         </div>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveParameterModal<%- i %>">
-          Show Recipe Details
-        </button>
+        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#saveParameterModal<%- i %>">
+            Show Recipe Details
+          </button> -->
       </div>
     </div>
     <% } %>
@@ -82,33 +78,22 @@
 
 
 <!-- Modal -->
-<!-- <div class="modal fade" id="saveParameterModal" tabindex="-1" aria-labelledby="saveParameterModalLabel" aria-hidden="true">
+<div class="modal fade" id="sustainability" tabindex="-1" aria-labelledby="sustainabilityLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="saveParameterModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h1 class="modal-title fs-5" id="sustainabilityLabel">Are these ingredients sustainable?</h1>
       </div>
-      <form action="/persona/new-prompt/saved" method="post">
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input class="form-control" type="text" name="title" />
-          </div>
-          <div class="mb-3">
-            <label for="description" class="form-label">Description (Optional)</label>
-            <input class="form-control" type="text" name="description" id="description" />
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button class="btn" type="submit">Save</button>
-        </div>
-      </form>
+      <div class="modal-body mb-5">
+        <%- sustainability %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>
-<br> -->
+<br>
 
 
 <script>
@@ -122,6 +107,5 @@
 </script>
 
 <!-- navbar and footer -->
-<!-- <s%-include ("../partials/navbar.ejs")%> -->
 <%-include ("./partials/bottom-nav.ejs")%>
 <%-include ("./partials/footer.ejs")%>
