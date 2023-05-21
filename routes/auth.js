@@ -96,7 +96,7 @@ router.post("/loginUser", async (req, res) => {
 
         console.log(req.session.user.name)
 
-        return res.render("home", {
+        return res.render("./home/home", {
             name: req.session.user.name,
 
         })
@@ -208,7 +208,7 @@ router.post('/500', (req, res) => {
 
 //home page
 router.get("/home", (req, res) => {
-    res.render("home", {
+    res.render("./home/home", {
         name: req.session.user.name,
     });
 });
