@@ -26,54 +26,19 @@
 
     <div class="container-fluid" id="login">
         <div id="box">
-        <img
-          id="logo"
-          src="../assets/logo.png"
-          width="300px"
-          height="300px"
-          alt="logo"
-        /> 
+        <img id="logo" src="../assets/logo.png" width="300px" height="300px" alt="logo"/> 
+        <h2 class="pt-5 text-light">Forgot your password?</h2>
+        <p class="text-light">Enter your email address below and we'll get you back on track.</p>
 
-        <div class="container text-start py-5">
+        <div class="container text-start py-3">
           <form action="/loginUser" method="post">
             <div class="mb-3">
-              <label for="loginName" class="form-label">Username / Email</label>
-              <input
-                type="loginName"
-                class="form-control"
-                id="loginName"
-                name="loginName"
-                aria-describedby="emailHelp"
-              />
-
-              <div id="emailHelp" class="form-text">
-                We'll never share your email with anyone else.
-              </div>
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" />
             </div>
 
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-              />
-            </div>
-
-            <!-- FORGET PASSWORD -->
-            <div id="resetPassword" class="form-text">
-              <a href="/resetPassword">Forgot password</a>
-            </div>
-
-            <div class="p-4 text-center">
-              <button type="submit" class="btn btn-primary">LOGIN</button>
-            </div>
-
-            <!-- SIGN UP -->
-            <div>
-              <p class="text-center">
-                Don't have an account? <a href="/signup">SIGN UP</a>
+            <div class="mb-3 py-2 text-center">
+                <button class="btn btn-primary btn-lg" type="submit" href="#">SUBMIT</button>
               </p>
             </div>
           </form>
