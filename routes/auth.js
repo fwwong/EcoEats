@@ -24,6 +24,8 @@ router.post("/signup", async (req, res) => {
         username,
         email,
         password,
+        securityQuestion,
+        securityAnswer,
     } = req.body;
 
     const hashedPassword = await bcrypt.hashSync(password, saltRounds);
@@ -35,6 +37,8 @@ router.post("/signup", async (req, res) => {
             username: username,
             email: email,
             password: hashedPassword,
+            securityQuestion: securityQuestion,
+            securityAnswer: hashedSecurityAnswer,
         });
         console.log("User created");
         res.redirect("/");
