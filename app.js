@@ -3,7 +3,7 @@ const app = express();
 const database = require("./src/database"); // Database Connection
 const sessionConfig = require("./src/session"); // Session Configuration
 const authRoutes = require("./routes/auth"); // includes login, signup, logout, password reset, index, and home
-
+const recipeRoutes = require("./routes/recipeGenerator"); // includes recipe generator
 
 
 app.set('view engine', 'ejs');
@@ -15,6 +15,7 @@ app.use(express.static('public'));
 
 // Routes
 app.use("/", authRoutes);
+app.use("/", recipeRoutes);
 
 
 // Database & Port Connection
@@ -32,7 +33,7 @@ app.use(express.static(__dirname + "/"));
 
 //404 page not found 
 app.get("*", (req, res) => {
-    res.render("../views/error/404");
+    res.send("404 Page Not Found");
 });
 
 app.post("/404", (req, res) => {
