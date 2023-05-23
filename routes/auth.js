@@ -117,7 +117,7 @@ router.get('/logout', async (req, res) => {
                 console.error(err);
                 res.status(500).send("An error occurred during logout");
             } else {
-                res.render("../views/authorization/logout");
+                res.render("../views/index");
             }
         });
     });
